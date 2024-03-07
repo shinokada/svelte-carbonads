@@ -17,7 +17,7 @@
     "gen:exports": "svelte-lib-helpers exports",
     "gen:docs": "svelte-lib-helpers docs",
     "copy:packagejson": "svelte-lib-helpers package",
-    "lib-helpers": "npm run gen:docs && npm run package && npm run copy:packagejson"
+    "lib-helpers": "npm run gen:docs && npm run gen:exports && npm run package && npm run copy:packagejson"
   },
   "description": "Cabonads component for Svelte.",
   "license": "MIT",
@@ -35,12 +35,6 @@
   "engines": {
     "npm": ">=7.0.0",
     "node": ">=18.0.0"
-  },
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "svelte": "./dist/index.js"
-    }
   },
   "files": [
     "dist",
@@ -89,5 +83,16 @@
   },
   "svelte": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "type": "module"
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "svelte": "./dist/index.js"
+    },
+    "./Carbonads.svelte": {
+      "types": "./dist/Carbonads.svelte.d.ts",
+      "svelte": "./dist/Carbonads.svelte"
+    },
+    "./package.json": "./package.json"
+  }
 }
