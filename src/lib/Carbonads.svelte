@@ -1,20 +1,28 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	// import { onMount } from 'svelte';
 	import { page, navigating } from '$app/stores';
 	interface WindowWithCarbonAds extends Window {
 		_carbonads: {
 			refresh: () => void;
 		};
 	}
-	export let carbonSrc: string = '';
-	export let adclass: string = 'fixed bottom-5 right-5 z-50 hidden sm:block';
-
-	onMount(() => {
-		refreshCarbonAds();
-	});
-	$: if ($navigating) {
-		refreshCarbonAds();
+	interface Props{
+		carbonSrc: string
+		adclass: string
 	}
+
+	let { carbonSrc, adclass='fixed bottom-5 right-5 z-50 hidden sm:block', ...attributes } = $props<Props>();
+
+	// export let carbonSrc: string = '';
+	// export let adclass: string = 'fixed bottom-5 right-5 z-50 hidden sm:block';
+
+	$effect(() => {
+		refreshCarbonAds();
+		
+	});
+	// $: if ($navigating) {
+	// 	refreshCarbonAds();
+	// }
 
 	function refreshCarbonAds() {
 		const isCarbonAdsRendered = document.querySelector('#carbonads');
@@ -35,6 +43,6 @@
 	}
 </script>
 
-<aside class={adclass}>
+<aside class={adclass} {...attributes}>
 	<div id="carbon-container" />
 </aside>
