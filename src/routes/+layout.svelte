@@ -4,7 +4,7 @@
 	import Nav from './utils/Nav.svelte';
 	import Footer from './utils/Footer.svelte';
 	import MetTag from './utils/MetTag.svelte';
-	import { Carbonads } from '$lib'
+	import { Carbonads } from '$lib';
 </script>
 
 <MetTag />
@@ -15,5 +15,5 @@
 		{@render children()}
 	</div>
 </section>
-<Carbonads carbonSrc='//cdn.carbonads.com/carbon.js?serve=CEAIC53I&placement=flowbite-sveltecom' />
+<Carbonads carbonSrc="//cdn.carbonads.com/carbon.js?serve=CEAIC53I&placement=flowbite-sveltecom" />
 <Footer />

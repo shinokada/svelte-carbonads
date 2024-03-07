@@ -19,7 +19,7 @@
 	$effect(() => {
 		if ($navigating) {
 			const container = document.querySelector('#carbon-container');
-			if(container){
+			if (container) {
 				container.innerHTML = '';
 			}
 		} else {
@@ -34,9 +34,16 @@
 			}
 		}
 	});
-
 </script>
 
 <aside class={adclass} {...attributes}>
 	<div id="carbon-container" />
 </aside>
+
+<!--
+@component
+[Go to docs](https://svelte-carbonads.codewithshin.com/)
+## Props
+@props: carbonSrc: string;
+@props:adclass?:  string; = 'fixed bottom-5 right-5 z-50 hidden sm:block';
+-->
