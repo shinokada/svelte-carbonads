@@ -6,10 +6,10 @@
 			refresh: () => void;
 		};
 	}
-	interface Props{
-		carbonSrc: string
-		adclass: string
-	}
+	// interface Props{
+	// 	carbonSrc: string
+	// 	adclass: string
+	// }
 
 	// let { carbonSrc, adclass='fixed bottom-5 right-5 z-50 hidden sm:block', ...attributes } = $props<Props>();
 
