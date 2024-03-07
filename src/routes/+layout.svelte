@@ -13,7 +13,7 @@
   import FooterLinkGroup from 'flowbite-svelte/FooterLinkGroup.svelte';
   import FooterLink from 'flowbite-svelte/FooterLink.svelte';
   import { MetaTags } from 'svelte-meta-tags';
-  import {Carbonads} from '$lib';
+  import { Carbonads } from '$lib';
 
   $: activeUrl = $page.url.pathname;
   const title = 'Svelte Awesome Icons';
@@ -53,9 +53,9 @@
     imageAlt: 'Svelte Awesome Icons'
   }}
 />
-<div class="max-h-screen overflow-auto relative w-full" id="svelte">
+<div class="relative max-h-screen w-full overflow-auto" id="svelte">
   <header
-    class="sticky top-0 z-40 flex-none w-full mx-auto bg-white border-b border-gray-200 dark:border-gray-600 dark:bg-sky-950"
+    class="sticky top-0 z-40 mx-auto w-full flex-none border-b border-gray-200 bg-white dark:border-gray-600 dark:bg-sky-950"
   >
     <Navbar color="default" fluid let:hidden let:toggle class="dark:bg-sky-950 ">
       <NavBrand href="/">
@@ -78,10 +78,10 @@
         <NavLi href="/" data-sveltekit-reload>Home</NavLi>
         <NavLi href="/about">About</NavLi>
       </NavUl>
-      <div class="flex items-center ml-auto">
-        <DarkMode class="inline-block dark:hover:text-white hover:text-gray-900" />
+      <div class="ml-auto flex items-center">
+        <DarkMode class="inline-block hover:text-gray-900 dark:hover:text-white" />
       </div>
-      <NavHamburger on:click={toggle} class="ml-3 m-0 md:hidden block" />
+      <NavHamburger on:click={toggle} class="m-0 ml-3 block md:hidden" />
     </Navbar>
   </header>
 
@@ -104,5 +104,4 @@
       </FooterLinkGroup>
     </div>
   </Footer>
-
 </div>

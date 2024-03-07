@@ -20,4 +20,3 @@ pnpm i -D svelte-carbonads@2.0.0-next.x
 ```sh
 pnpm i -D svelte-carbonads@1.x.x
 ```
-
