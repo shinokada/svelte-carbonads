@@ -57,6 +57,7 @@
     "@sveltejs/kit": "^2.5.2",
     "@sveltejs/package": "^2.2.7",
     "@sveltejs/vite-plugin-svelte": "^3.0.2",
+    "@svitejs/changesets-changelog-github-compact": "^1.1.0",
     "@types/eslint": "^8.56.5",
     "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^7.1.1",
