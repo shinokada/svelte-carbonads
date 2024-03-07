@@ -1,7 +1,7 @@
 # Svelte Carbonads
 
-- [Docs](http://svelte-carbonads.codewithshin.com)
-- [Repo](hthttps://github.com/shinokada/svelte-carbonads)
+- [Docs](https://svelte-carbonads.codewithshin.com)
+- [Repo](https://github.com/shinokada/svelte-carbonads)
 
 ## Installation
 
@@ -9,7 +9,7 @@ Find out the latest versions for v1 and v2 at the [GitHub Releases page](https:/
 
 ### Svelte 5:Runes
 
-After updating the `svelte.config.js`:
+After updating the `svelte.config.js`, install version `2.x.x`:
 
 ```sh
 pnpm i -D svelte-carbonads@2.0.0-next.x
