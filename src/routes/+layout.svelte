@@ -13,10 +13,11 @@
   import FooterLinkGroup from 'flowbite-svelte/FooterLinkGroup.svelte';
   import FooterLink from 'flowbite-svelte/FooterLink.svelte';
   import { MetaTags } from 'svelte-meta-tags';
+  import GitHub from './utils/GitHub.svelte';
   import { Carbonads } from '$lib';
 
   $: activeUrl = $page.url.pathname;
-  const title = 'Svelte Awesome Icons';
+  const title = 'Svelte Carbonads';
   let divClass = 'w-full ml-auto md:block md:w-auto order-1 md:order-none';
   let ulClass =
     'flex flex-col py-3 my-4 md:flex-row md:my-0 text-sm font-medium gap-4 dark:md:bg-transparent md:bg-white md:border-0';
@@ -27,37 +28,37 @@
 </script>
 
 <MetaTags
-  title="Svelte Awesome Icons"
-  description="svelte-awesome-icons icon set for Svelte"
+  title="Svelte Carbonads"
+  description="Carbonads component for Svelte 4/5/Runes"
   openGraph={{
     type: 'website',
-    url: 'https://svelte-awesome-icons.vercel.app/',
-    title: 'Svelte Awesome Icons',
-    description: 'Awesome icon set for Svelte',
+    url: 'https://svelte-carbonads.codewithshin.com/',
+    title: 'Svelte Carbonads',
+    description: 'Carbonads component for Svelte 4/5/Runes',
     images: [
       {
-        url: 'https://open-graph-vercel.vercel.app/api/svelte-awesome-icons',
+        url: 'https://open-graph-vercel.vercel.app/api/svelte-carbonads',
         width: 1200,
         height: 630,
-        alt: 'Svelte Awesome Icons'
+        alt: 'Svelte Carbonads'
       }
     ],
-    siteName: 'Svelte Awesome Icons'
+    siteName: 'Svelte Carbonads'
   }}
   twitter={{
     handle: '@shinokada',
     cardType: 'summary_large_image',
-    title: 'Svelte Awesome Icons',
-    description: 'Awesome icon set for Svelte',
-    image: 'https://open-graph-vercel.vercel.app/api/svelte-awesome-icons',
-    imageAlt: 'Svelte Awesome Icons'
+    title: 'Svelte Carbonads',
+    description: 'Carbonads component for Svelte 4/5/Rune',
+    image: 'https://open-graph-vercel.vercel.app/api/svelte-carbonads',
+    imageAlt: 'Svelte Carbonads'
   }}
 />
 <div class="relative max-h-screen w-full overflow-auto" id="svelte">
   <header
-    class="sticky top-0 z-40 mx-auto w-full flex-none border-b border-gray-200 bg-white dark:border-gray-600 dark:bg-sky-950"
+    class="sticky top-0 z-40 mx-auto w-full flex-none border-b border-gray-200 bg-white dark:border-gray-600 dark:bg-sky-900"
   >
-    <Navbar color="default" fluid let:hidden let:toggle class="dark:bg-sky-950 ">
+    <Navbar color="default" fluid let:hidden let:toggle class="dark:bg-sky-900 ">
       <NavBrand href="/">
         <span
           class="self-center whitespace-nowrap text-2xl font-semibold text-primary-900 dark:text-primary-500"
@@ -76,7 +77,7 @@
         activeClass="md:!pl-3 md:!py-2 md:!pl-0 md:text-primary-700 text-white dark:text-white dark:md:text-primary-500 bg-primary-700 md:bg-transparent dark:bg-primary-600 md:dark:bg-transparent cursor-default"
       >
         <NavLi href="/" data-sveltekit-reload>Home</NavLi>
-        <NavLi href="/about">About</NavLi>
+        <NavLi href="https://github.com/shinokada/svelte-carbonads">GitHub</NavLi>
       </NavUl>
       <div class="ml-auto flex items-center">
         <DarkMode class="inline-block hover:text-gray-900 dark:hover:text-white" />
@@ -89,11 +90,11 @@
     <slot />
   </div>
 
-  <Footer footerType="logo" class="dark:dark:bg-sky-950">
+  <Footer footerType="logo" class="dark:dark:bg-sky-900">
     <div class="sm:flex sm:items-center sm:justify-between">
       <FooterBrand
-        href="https://svelte-awesome-icons.vercel.app/"
-        name="Svelte Awesome Icons"
+        href="https://codewithshin.com/"
+        name="codewithshin.com"
         classSpan="text-primary-700 dark:text-primary-500"
       />
       <FooterLinkGroup

@@ -1,11 +1,25 @@
+import { mdsvex } from 'mdsvex';
+import preprocess from 'svelte-preprocess';
 import adapter from '@sveltejs/adapter-auto';
+import mdsvexConfig from './mdsvex.config.js';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   // Consult https://kit.svelte.dev/docs/integrations#preprocessors
   // for more information about preprocessors
-  preprocess: [vitePreprocess({})],
+  // preprocess: [vitePreprocess({})],
+  extensions: ['.svelte', '.svx', '.md'],
+  smartypants: {
+    dashes: 'oldschool'
+  },
+  preprocess: [
+    mdsvex(mdsvexConfig),
+    vitePreprocess({}),
+    preprocess({
+      postcss: true
+    })
+  ],
   // compilerOptions: {
   // 	runes: true
   // },
