@@ -37,7 +37,7 @@
 		{/snippet}
 		<NavUl>
 			<NavLi href="/">Home</NavLi>
-			<NavLi href="https://blog.codewithshin.com">Blog</NavLi>
+			<NavLi href="/about">About</NavLi>
 		</NavUl>
 	</Navbar>
 </header>
