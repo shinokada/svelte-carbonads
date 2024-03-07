@@ -1,6 +1,6 @@
 {
 	"name": "svelte-carbonads",
-	"version": "0.1.0",
+	"version": "2.0.0-next.1",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
@@ -47,7 +47,7 @@
 		"!dist/**/*.spec.*"
 	],
 	"peerDependencies": {
-		"svelte": "^4.0.0"
+		"svelte": "^5.0.0"
 	},
 	"keywords": [
 		"svelte",
