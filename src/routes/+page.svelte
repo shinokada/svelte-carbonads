@@ -1,5 +1,12 @@
-<h1>Welcome to your library project</h1>
-<p>Create your package using @sveltejs/package and preview/showcase your work with SvelteKit</p>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
 
-Hello
+
+<h1>Welcome to Svelte Carbonads</h1>
+<p>Carbonads for SvelteKit</p>
+
+
+<h2>Installation</h2>
+
+
+<h2>Repo</h2>
+
+

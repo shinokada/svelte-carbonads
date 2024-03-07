@@ -13,6 +13,7 @@
   import FooterLinkGroup from 'flowbite-svelte/FooterLinkGroup.svelte';
   import FooterLink from 'flowbite-svelte/FooterLink.svelte';
   import { MetaTags } from 'svelte-meta-tags';
+  import {Carbonads} from '$lib';
 
   $: activeUrl = $page.url.pathname;
   const title = 'Svelte Awesome Icons';
@@ -75,8 +76,7 @@
         activeClass="md:!pl-3 md:!py-2 md:!pl-0 md:text-primary-700 text-white dark:text-white dark:md:text-primary-500 bg-primary-700 md:bg-transparent dark:bg-primary-600 md:dark:bg-transparent cursor-default"
       >
         <NavLi href="/" data-sveltekit-reload>Home</NavLi>
-        <NavLi href="/brands">Brands</NavLi>
-        <NavLi href="/regular">Regular</NavLi>
+        <NavLi href="/about">About</NavLi>
       </NavUl>
       <div class="flex items-center ml-auto">
         <DarkMode class="inline-block dark:hover:text-white hover:text-gray-900" />
@@ -85,7 +85,7 @@
     </Navbar>
   </header>
 
-  <div class="md:flex">
+  <div class="p-8">
     <slot />
   </div>
 
@@ -104,4 +104,5 @@
       </FooterLinkGroup>
     </div>
   </Footer>
+
 </div>
