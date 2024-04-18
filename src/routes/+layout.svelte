@@ -13,8 +13,9 @@
   import FooterLinkGroup from 'flowbite-svelte/FooterLinkGroup.svelte';
   import FooterLink from 'flowbite-svelte/FooterLink.svelte';
   import { MetaTags } from 'svelte-meta-tags';
-  import GitHub from './utils/GitHub.svelte';
-  import { Carbonads } from '$lib';
+  import Runatics from './utils/Runatics.svelte';
+  export let data;
+  const analyticsId = data.ANALYTICS_ID
 
   $: activeUrl = $page.url.pathname;
   const title = 'Svelte Carbonads';
@@ -26,7 +27,7 @@
     document.getElementById('svelte')?.scrollTo({ top: 0 });
   });
 </script>
-
+<Runatics {analyticsId} />
 <MetaTags
   title="Svelte Carbonads"
   description="Carbonads component for Svelte 4/5/Runes"
