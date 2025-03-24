@@ -1,109 +1,211 @@
 <script lang="ts">
-  import '../app.pcss';
-  import { afterNavigate } from '$app/navigation';
-  import { page } from '$app/stores';
-  import DarkMode from 'flowbite-svelte/DarkMode.svelte';
-  import Navbar from 'flowbite-svelte/Navbar.svelte';
-  import NavBrand from 'flowbite-svelte/NavBrand.svelte';
-  import NavLi from 'flowbite-svelte/NavLi.svelte';
-  import NavUl from 'flowbite-svelte/NavUl.svelte';
-  import NavHamburger from 'flowbite-svelte/NavHamburger.svelte';
-  import Footer from 'flowbite-svelte/Footer.svelte';
-  import FooterBrand from 'flowbite-svelte/FooterBrand.svelte';
-  import FooterLinkGroup from 'flowbite-svelte/FooterLinkGroup.svelte';
-  import FooterLink from 'flowbite-svelte/FooterLink.svelte';
-  import { MetaTags } from 'svelte-meta-tags';
-  import Runatics from './utils/Runatics.svelte';
-  export let data;
-  const analyticsId = data.ANALYTICS_ID
+	import '../app.css';
+	import { sineIn } from 'svelte/easing';
+	import type { Component } from 'svelte';
+	import { page } from '$app/state';
+	import {
+		Footer,
+		removeHyphensAndCapitalize,
+		DotsHorizontalOutline,
+		GithubSolid,
+		random_tailwind_color,
+		XSolid,
+		Bluesky
+	} from 'runes-webkit';
+	import {
+		Navbar,
+		NavLi,
+		NavBrand,
+		NavUl,
+		uiHelpers,
+		Darkmode,
+		Dropdown,
+		DropdownUl,
+		DropdownLi
+	} from 'svelte-5-ui-lib';
+	import { RunesMetaTags, deepMerge } from 'runes-meta-tags';
+	import { Runatics } from 'runatics';
+	import DynamicCodeBlockStyle from './utils/DynamicCodeBlockStyle.svelte';
 
-  $: activeUrl = $page.url.pathname;
-  const title = 'Svelte Carbonads';
-  let divClass = 'w-full ml-auto md:block md:w-auto order-1 md:order-none';
-  let ulClass =
-    'flex flex-col py-3 my-4 md:flex-row md:my-0 text-sm font-medium gap-4 dark:md:bg-transparent md:bg-white md:border-0';
+	let activeUrl = $state(page.url.pathname);
+	$effect(() => {
+		activeUrl = page.url.pathname;
+	});
 
-  afterNavigate(() => {
-    document.getElementById('svelte')?.scrollTo({ top: 0 });
-  });
+	type LiType = {
+		name: string;
+		href: string;
+		Icon?: Component;
+	};
+	let { children, data } = $props();
+	const analyticsId = data.ANALYTICS_ID;
+	// metaTags
+	let metaTags = $state(
+		page.data.pageMetaTags
+			? deepMerge(page.data.layoutMetaTags, page.data.pageMetaTags)
+			: data.layoutMetaTags
+	);
+	// sidebar
+	const sidebarUi = uiHelpers();
+	let isOpen = $state(false);
+
+	let currentUrl = $state(page.url.pathname);
+	const hasPath = (key: string) => currentUrl.includes(key);
+
+	const lis: LiType[] = [
+		{ name: 'Home', href: '/' },
+		{ name: 'Repo', href: 'https://github.com/shinokada/svelte-carbonads' }
+	];
+	const brand = {
+		name: 'codewithshin.com',
+		href: 'https://codewithshin.com'
+	};
+	const urlsToIncludeSwitcherAndSidebar = ['/'];
+	/*eslint no-undef: "off"*/
+	const siteName = removeHyphensAndCapitalize(__NAME__);
+	const githubUrl = `https://github.com/shinokada/${__NAME__}`;
+	const twitterUrl = 'https://twitter.com/shinokada';
+	const blueskyUrl = 'https://bsky.app/profile/codewithshin.com';
+
+	// nav
+	let nav = uiHelpers();
+	let navStatus = $state(false);
+	let toggleNav = nav.toggle;
+	let closeNav = nav.close;
+	let headerCls =
+		'sticky top-0 z-40 mx-auto w-full flex-none border-b border-gray-200 bg-gray-100 dark:border-gray-600 dark:bg-sky-950';
+	let navClass =
+		'w-full divide-gray-200 border-gray-200 bg-gray-50 dark_bg_theme text-gray-500 dark:divide-gray-700 dark:border-gray-700 dark:transparent dark:text-gray-400 sm:px-4';
+	let divClass = 'ml-auto w-full';
+	let ulclass = 'dark:lg:bg-transparent lg:space-x-4';
+	function isIncluded(url: string, allowedUrls: string[]): boolean {
+		return allowedUrls.some((allowedUrl) => {
+			// For home page '/', do exact matching
+			if (allowedUrl === '/') {
+				return url === '/' || url === '';
+			}
+			// For other URLs, continue using startsWith
+			return url.startsWith(allowedUrl);
+		});
+	}
+	let urlsToIncludeSwitcher = ['/'];
+	let include = $derived(isIncluded(currentUrl, urlsToIncludeSwitcher));
+	// dropdown
+	let dropdown = uiHelpers();
+	let dropdownStatus = $state(false);
+	let closeDropdown = dropdown.close;
+	let dropdownTransitionParams = {
+		y: 0,
+		duration: 200,
+		easing: sineIn
+	};
+
+	$effect(() => {
+		navStatus = nav.isOpen;
+		dropdownStatus = dropdown.isOpen;
+		currentUrl = page.url.pathname;
+		metaTags = page.data.pageMetaTags
+			? deepMerge(page.data.layoutMetaTags, page.data.pageMetaTags)
+			: data.layoutMetaTags;
+		isOpen = sidebarUi.isOpen;
+	});
 </script>
+
+{#snippet navLi(lis: LiType[])}
+	{#each lis as { name, href, Icon }}
+		{#if Icon}
+			<Icon class="mb-3 h-8 w-8 {random_tailwind_color()}"></Icon>
+		{/if}
+		<NavLi {href}>{name}</NavLi>
+	{/each}
+{/snippet}
+
 <Runatics {analyticsId} />
-<MetaTags
-  title="Svelte Carbonads"
-  description="Carbonads component for Svelte 4/5/Runes"
-  openGraph={{
-    type: 'website',
-    url: 'https://svelte-carbonads.codewithshin.com/',
-    title: 'Svelte Carbonads',
-    description: 'Carbonads component for Svelte 4/5/Runes',
-    images: [
-      {
-        url: 'https://open-graph-vercel.vercel.app/api/svelte-carbonads',
-        width: 1200,
-        height: 630,
-        alt: 'Svelte Carbonads'
-      }
-    ],
-    siteName: 'Svelte Carbonads'
-  }}
-  twitter={{
-    handle: '@shinokada',
-    cardType: 'summary_large_image',
-    title: 'Svelte Carbonads',
-    description: 'Carbonads component for Svelte 4/5/Rune',
-    image: 'https://open-graph-vercel.vercel.app/api/svelte-carbonads',
-    imageAlt: 'Svelte Carbonads'
-  }}
-/>
-<div class="relative max-h-screen w-full overflow-auto" id="svelte">
-  <header
-    class="sticky top-0 z-40 mx-auto w-full flex-none border-b border-gray-200 bg-white dark:border-gray-600 dark:bg-sky-900"
-  >
-    <Navbar color="default" fluid let:hidden let:toggle class="dark:bg-sky-900 ">
-      <NavBrand href="/">
-        <span
-          class="self-center whitespace-nowrap text-2xl font-semibold text-primary-900 dark:text-primary-500"
-        >
-          {title}
-        </span>
-      </NavBrand>
+<RunesMetaTags {...metaTags} />
 
-      <NavUl
-        {activeUrl}
-        {hidden}
-        {divClass}
-        {ulClass}
-        on:click={() => setTimeout(toggle, 1)}
-        nonActiveClass="md:!pl-3 md:!py-2 md:!pl-0 text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary-700 dark:text-white md:dark:hover:text-primary-700 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-        activeClass="md:!pl-3 md:!py-2 md:!pl-0 md:text-primary-700 text-white dark:text-white dark:md:text-primary-500 bg-primary-700 md:bg-transparent dark:bg-primary-600 md:dark:bg-transparent cursor-default"
-      >
-        <NavLi href="/" data-sveltekit-reload>Home</NavLi>
-        <NavLi href="https://github.com/shinokada/svelte-carbonads">GitHub</NavLi>
-      </NavUl>
-      <div class="ml-auto flex items-center">
-        <DarkMode class="inline-block hover:text-gray-900 dark:hover:text-white" />
-      </div>
-      <NavHamburger on:click={toggle} class="m-0 ml-3 block md:hidden" />
-    </Navbar>
-  </header>
+<header class={headerCls}>
+	<Navbar {navClass} {toggleNav} {closeNav} {navStatus} breakPoint="lg" fluid div2Class={divClass}>
+		{#snippet brand()}
+			{#if urlsToIncludeSwitcherAndSidebar.some((path) => currentUrl.startsWith(path))}
+				<button
+					onclick={sidebarUi.toggle}
+					type="button"
+					class="z-100 mt-1 mr-4 lg:hidden"
+					aria-controls="navbar-default"
+				>
+					<span class="sr-only">Toggle sidebar menu</span>
+					<svg
+						class="h-5 w-5"
+						aria-hidden="true"
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 17 14"
+					>
+						<path
+							stroke="currentColor"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M1 1h15M1 7h15M1 13h15"
+						/>
+					</svg>
+				</button>
+			{/if}
+			{#if siteName}
+				<NavBrand
+					{siteName}
+					spanClass="self-center whitespace-nowrap text-2xl font-semibold text-primary-900 dark:text-primary-500"
+				/>
+			{/if}
+			<div class="ml-auto flex items-center lg:order-1">
+				{#if include}
+					<div class="hidden sm:block">
+						<DynamicCodeBlockStyle />
+					</div>
+				{/if}
+				<DotsHorizontalOutline
+					onclick={dropdown.toggle}
+					class="mr-4 ml-6 dark:text-white"
+					size="lg"
+				/>
+				<Darkmode class="m-0 p-2" />
+				<div class="relative">
+					<Dropdown
+						{dropdownStatus}
+						{closeDropdown}
+						params={dropdownTransitionParams}
+						class="absolute top-2 -left-[87px] w-12 p-1.5"
+					>
+						<DropdownUl class="py-0">
+							{#if blueskyUrl}
+								<DropdownLi href={blueskyUrl} target="_blank" aClass="p-0.5 m-0">
+									<Bluesky size="30" />
+								</DropdownLi>
+							{/if}
+							{#if twitterUrl}
+								<DropdownLi href={twitterUrl} target="_blank" aClass="p-2 m-0"
+									><XSolid /></DropdownLi
+								>
+							{/if}
+							{#if githubUrl}
+								<DropdownLi href={githubUrl} target="_blank" aClass="p-2 m-0">
+									<GithubSolid />
+								</DropdownLi>
+							{/if}
+						</DropdownUl>
+					</Dropdown>
+				</div>
+			</div>
+		{/snippet}
+		{#if lis}
+			<NavUl {activeUrl} class={ulclass}>
+				{@render navLi(lis)}
+			</NavUl>
+		{/if}
+	</Navbar>
+</header>
 
-  <div class="p-8">
-    <slot />
-  </div>
-
-  <Footer footerType="logo" class="dark:dark:bg-sky-900">
-    <div class="sm:flex sm:items-center sm:justify-between">
-      <FooterBrand
-        href="https://codewithshin.com/"
-        name="codewithshin.com"
-        classSpan="text-primary-700 dark:text-primary-500"
-      />
-      <FooterLinkGroup
-        ulClass="flex flex-wrap items-center mt-3 text-sm text-gray-800 dark:text-gray-200 sm:mt-0"
-      >
-        <FooterLink href="/" data-sveltekit-reload>Home</FooterLink>
-        <FooterLink href="https://github.com/shinokada/svelte-carbonads/">GitHub</FooterLink>
-      </FooterLinkGroup>
-    </div>
-  </Footer>
+<div class="lg:flex">
+	{@render children()}
 </div>
+<Footer {brand} {lis} />
