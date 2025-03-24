@@ -1,5 +1,11 @@
 # svelte-carbonads
 
+## 2.0.0
+
+### Major Changes
+
+- feat: svelte 5 only
+
 ## 1.0.1
 
 ### Patch Changes
