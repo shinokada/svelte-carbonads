@@ -1,5 +1,11 @@
 # svelte-carbonads
 
+## 2.0.1
+
+### Patch Changes
+
+- fix: change from svelte-5-ui-lib to flowbite-svelte
+
 ## 2.0.0
 
 ### Major Changes

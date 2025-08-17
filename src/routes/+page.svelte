@@ -9,7 +9,7 @@
 		info, H2,
 		HighlightCompo
 	} from 'runes-webkit';
-	import { P } from 'svelte-5-ui-lib';
+	import { P } from 'flowbite-svelte';
 
 	const modules = import.meta.glob('./md/*.md', {
     query: '?raw',
@@ -40,13 +40,13 @@
 		runesMetaTagsVersion: __RUNES_METATAGS_VERSION__,
 		svelteVersion: __SVELTE_VERSION__,
 		svelteKitVersion: __SVELTEKIT_VERSION__,
-		svelte5uilibVersion: __SVELTE_5_UI_LIB_VERSION__,		svelteRuneHighlight: __SVELTE_RUNE_HIGHLIGHT_VERSION__,
+			svelteRuneHighlight: __SVELTE_RUNE_HIGHLIGHT_VERSION__,
 		viteVersion: __VITE_VERSION__
 	};
 </script>
 
-<div class="relative mx-auto mt-8 h-full max-w-7xl overflow-y-auto px-8 pb-20">
-	<SupportBanner class="mt-4">
+<div class="relative mx-auto mt-8 h-full max-w-7xl overflow-y-auto px-8 pb-10">
+	<SupportBanner class="relative mt-4 dark:bg-stone-800">
 		To Keep It Going, Please Show Your Love.<a
 			href="https://ko-fi.com/Z8Z2CHALG"
 			target="_blank"
@@ -66,10 +66,10 @@
 	<P>Carbonads is an advertising network aimed at developers and designers. Once you get the advertisement code, you can use quickly set up the ads in your SvelteKit project. </P>
 	
 	<H2>Installation</H2>
-	<HighlightCompo class="max-w-7xl" codeLang="ts" code={modules['./md/installation.md'] as string} />
+	<HighlightCompo class="max-w-7xl" codeLang="ts" code={modules['./md/installation.md'] as string} clipboardClass="top-2"/>
 
 	<H2>Usage</H2>
-	<HighlightCompo class="max-w-7xl" codeLang="ts" code={modules['./md/usage.md'] as string} />
+	<HighlightCompo class="max-w-7xl" codeLang="ts" code={modules['./md/usage.md'] as string} clipboardClass="top-2"/>
 
-	<TechInfo {...pkg} />
+	<TechInfo {...pkg} class="dark:bg-stone-900"/>
 </div>
