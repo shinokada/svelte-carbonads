@@ -66,10 +66,10 @@
 	<P>Carbonads is an advertising network aimed at developers and designers. Once you get the advertisement code, you can use quickly set up the ads in your SvelteKit project. </P>
 	
 	<H2>Installation</H2>
-	<HighlightCompo class="max-w-7xl" codeLang="ts" code={modules['./md/installation.md'] as string} clipboardClass="top-2"/>
+	<HighlightCompo class="max-w-7xl" codeLang="ts" code={modules['./md/installation.md'] as string} />
 
 	<H2>Usage</H2>
-	<HighlightCompo class="max-w-7xl" codeLang="ts" code={modules['./md/usage.md'] as string} clipboardClass="top-2"/>
+	<HighlightCompo class="max-w-7xl" codeLang="ts" code={modules['./md/usage.md'] as string} />
 
 	<TechInfo {...pkg} class="dark:bg-stone-900"/>
 </div>
