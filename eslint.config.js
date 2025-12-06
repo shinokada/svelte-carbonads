@@ -9,35 +9,35 @@ import svelteConfig from './svelte.config.js';
 const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
 
 export default ts.config(
-	includeIgnoreFile(gitignorePath),
-	{
-		ignores: ['dist/', 'dist/**/*']
-	},
-	js.configs.recommended,
-	...ts.configs.recommended,
-	...svelte.configs.recommended,
-	prettier,
-	...svelte.configs.prettier,
-	{
-		languageOptions: {
-			globals: {
-				...globals.browser,
-				...globals.node,
-				__NAME__: 'readonly'
-			}
-		}
-	},
-	{
-		files: ['**/*.svelte', '**/*.svelte.ts', '**/*.svelte.js'],
-		ignores: ['eslint.config.js', 'svelte.config.js'],
+  includeIgnoreFile(gitignorePath),
+  {
+    ignores: ['dist/', 'dist/**/*']
+  },
+  js.configs.recommended,
+  ...ts.configs.recommended,
+  ...svelte.configs.recommended,
+  prettier,
+  ...svelte.configs.prettier,
+  {
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        __NAME__: 'readonly'
+      }
+    }
+  },
+  {
+    files: ['**/*.svelte', '**/*.svelte.ts', '**/*.svelte.js'],
+    ignores: ['eslint.config.js', 'svelte.config.js'],
 
-		languageOptions: {
-			parserOptions: {
-				projectService: true,
-				extraFileExtensions: ['.svelte'],
-				parser: ts.parser,
-				svelteConfig
-			}
-		}
-	}
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+        extraFileExtensions: ['.svelte'],
+        parser: ts.parser,
+        svelteConfig
+      }
+    }
+  }
 );

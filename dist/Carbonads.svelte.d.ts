@@ -1,6 +1,6 @@
 interface Props {
-	carbonSrc: string;
-	class: string;
+  carbonSrc: string;
+  class: string;
 }
 /**
  * [Go to docs](https://svelte-carbonads.codewithshin.com/)
