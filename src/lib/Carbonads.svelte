@@ -43,12 +43,12 @@
 
   // Initialize and refresh on navigation
   $effect(() => {
-    // Refresh on mount and whenever navigation occurs
-    refreshCarbonAds();
-    
-    // Watch for navigation changes
+    // Access navigating to track it as a dependency
     if (navigating) {
       refreshCarbonAds();
+    } else {
+     // Initial mount
+     refreshCarbonAds();  
     }
   });
 </script>

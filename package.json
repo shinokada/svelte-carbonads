@@ -58,7 +58,7 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.8",
-    "@eslint/compat": "^1.4.1",
+    "@eslint/compat": "^2.0.0",
     "@eslint/js": "^9.39.1",
     "@playwright/test": "^1.57.0",
     "@sveltejs/adapter-auto": "^7.0.0",
@@ -83,11 +83,11 @@
     "publint": "^0.3.15",
     "runatics": "^0.1.4",
     "runes-meta-tags": "^0.4.5",
-    "runes-webkit": "^0.11.4",
+    "runes-webkit": "^0.12.1",
     "svelte": "^5.45.6",
     "svelte-check": "^4.3.4",
     "svelte-lib-helpers": "^0.4.31",
-    "svelte-rune-highlight": "^0.7.1",
+    "svelte-rune-highlight": "^0.11.1",
     "svelte-shields": "^0.5.3",
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.17",
@@ -95,7 +95,7 @@
     "typescript-eslint": "^8.48.1",
     "vite": "^7.2.6",
     "vite-plugin-devtools-json": "^1.0.0",
-    "vitest": "^3.2.4"
+    "vitest": "^4.0.15"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
