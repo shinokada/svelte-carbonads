@@ -3,33 +3,16 @@
 		removeHyphensAndCapitalize,
 		SupportBanner,
 		TechInfo,
-		BellActiveAltOutline,
-		InfoCircleOutline,
-		cards,
-		info, H2,
+		H2,
 		HighlightCompo
 	} from 'runes-webkit';
 	import { P } from 'flowbite-svelte';
 
 	const modules = import.meta.glob('./md/*.md', {
-    query: '?raw',
-    import: 'default',
-    eager: true
-  });
-	const brand = {
-		title: `${removeHyphensAndCapitalize(__NAME__)}`,
-		description: `${__DESCRIPTION__}`,
-		Icon: BellActiveAltOutline,
-		icon_class: 'text-blue-500'
-	};
-
-	const license = {
-		title: 'License',
-		description: 'Released under the MIT License.',
-		Icon: InfoCircleOutline,
-		href: `https://github.com/shinokada/${__NAME__}/blob/main/LICENSE`,
-		icon_class: 'text-lime-500'
-	};
+		query: '?raw',
+		import: 'default',
+		eager: true
+	});
 
 	/*eslint no-undef: "off"*/
 	const pkg = {
@@ -40,7 +23,7 @@
 		runesMetaTagsVersion: __RUNES_METATAGS_VERSION__,
 		svelteVersion: __SVELTE_VERSION__,
 		svelteKitVersion: __SVELTEKIT_VERSION__,
-			svelteRuneHighlight: __SVELTE_RUNE_HIGHLIGHT_VERSION__,
+		svelteRuneHighlight: __SVELTE_RUNE_HIGHLIGHT_VERSION__,
 		viteVersion: __VITE_VERSION__
 	};
 </script>
@@ -62,14 +45,20 @@
 
 	<h1 class="my-8 flex justify-center">{removeHyphensAndCapitalize(__NAME__)} for SvelteKit</h1>
 
+	<P
+		>Carbonads is an advertising network aimed at developers and designers. Once you get the
+		advertisement code, you can use quickly set up the ads in your SvelteKit project.
+	</P>
 
-	<P>Carbonads is an advertising network aimed at developers and designers. Once you get the advertisement code, you can use quickly set up the ads in your SvelteKit project. </P>
-	
 	<H2>Installation</H2>
-	<HighlightCompo class="max-w-7xl" codeLang="ts" code={modules['./md/installation.md'] as string} />
+	<HighlightCompo
+		class="max-w-7xl"
+		codeLang="ts"
+		code={modules['./md/installation.md'] as string}
+	/>
 
 	<H2>Usage</H2>
 	<HighlightCompo class="max-w-7xl" codeLang="ts" code={modules['./md/usage.md'] as string} />
 
-	<TechInfo {...pkg} class="dark:bg-stone-900"/>
+	<TechInfo {...pkg} class="dark:bg-stone-900" />
 </div>

@@ -1,5 +1,5 @@
 <script>
-	import { Footer, FooterBrand, FooterLink, FooterLinkGroup } from 'flowbite-svelte';
+	import { Footer, FooterBrand } from 'flowbite-svelte';
 </script>
 
 <Footer
@@ -8,6 +8,5 @@
 >
 	<div class="mx-auto max-w-7xl sm:flex sm:items-center sm:justify-between">
 		<FooterBrand href="https://www.codewithshin.com/" name="codewithshin.com" />
-		
 	</div>
 </Footer>

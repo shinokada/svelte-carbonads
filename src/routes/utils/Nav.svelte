@@ -1,11 +1,8 @@
 <script lang="ts">
 	import {
 		Navbar,
-		NavLi,
 		NavBrand,
 		NavHamburger,
-		NavUl,
-		uiHelpers,
 		DarkMode,
 		Dropdown,
 		DropdownItem
@@ -18,29 +15,24 @@
 	const twitterUrl = 'https://twitter.com/shinokada';
 	const blueskyUrl = 'https://bsky.app/profile/codewithshin.com';
 
-	let activeUrl = $state(page.url.pathname);
-	let nav = uiHelpers();
-	let navStatus = $state(false);
+	let activeUrl = $derived(page.url.pathname);
 
-	$effect(() => {
-		activeUrl = page.url.pathname;
-		navStatus = nav.isOpen;
-	});
+	// $effect(() => {
+	// 	activeUrl = page.url.pathname;
+	// });
 
-	let activeClass = 'p-2 text-base hover:text-gray-600';
-	let nonActiveClass = 'p-2 text-base hover:text-gray-600';
-  function isIncluded(url: string, allowedUrls: string[]): boolean {
-    return allowedUrls.some((allowedUrl) => {
-      // For home page '/', do exact matching
-      if (allowedUrl === "/") {
-        return url === "/" || url === "";
-      }
-      // For other URLs, continue using startsWith
-      return url.startsWith(allowedUrl);
-    });
-  }
-  let urlsToIncludeSwitcher = ["/"];
-  let include = $derived(isIncluded(activeUrl, urlsToIncludeSwitcher));
+	function isIncluded(url: string, allowedUrls: string[]): boolean {
+		return allowedUrls.some((allowedUrl) => {
+			// For home page '/', do exact matching
+			if (allowedUrl === '/') {
+				return url === '/' || url === '';
+			}
+			// For other URLs, continue using startsWith
+			return url.startsWith(allowedUrl);
+		});
+	}
+	let urlsToIncludeSwitcher = ['/'];
+	let include = $derived(isIncluded(activeUrl, urlsToIncludeSwitcher));
 </script>
 
 <Navbar
@@ -57,9 +49,9 @@
 	</NavBrand>
 	<div class="flex justify-end lg:order-2">
 		<NavHamburger class="order-3" />
-    {#if include}
-		<DynamicCodeBlockStyle class="hidden lg:block" />
-    {/if}
+		{#if include}
+			<DynamicCodeBlockStyle class="hidden lg:block" />
+		{/if}
 		<DotsHorizontalOutline class="mt-2 mr-4 ml-6 dark:text-white" size="lg" />
 		<Dropdown simple class="p-1">
 			{#if blueskyUrl}
