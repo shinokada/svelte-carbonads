@@ -34,6 +34,9 @@
       script.async = true;
       script.id = '_carbonads_js';
       script.src = carbonSrc;
+      script.onerror = () => {
+        console.error('Failed to load Carbon Ads script');
+      };
       container.appendChild(script);
     }
   }
@@ -44,8 +47,11 @@
     if (navigating) {
       refreshCarbonAds();
     } else {
-      // Initial mount
-      refreshCarbonAds();
+      // Initial mount only (when navigating is null/undefined)
+      // Check if this is the first run
+      if (!document.querySelector('#carbonads')) {
+        refreshCarbonAds();
+      }
     }
   });
 </script>
