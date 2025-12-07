@@ -38,10 +38,10 @@
   </P>
 
   <H2>Installation</H2>
-  <HighlightCompo class="max-w-7xl" codeLang="ts" code={modules['./md/installation.md'] as string} />
+  <HighlightCompo class="max-w-7xl" lang="ts" code={modules['./md/installation.md'] as string} />
 
   <H2>Usage</H2>
-  <HighlightCompo class="max-w-7xl" codeLang="ts" code={modules['./md/usage.md'] as string} />
+  <HighlightCompo class="max-w-7xl" lang="ts" code={modules['./md/usage.md'] as string} />
 
   <TechInfo {...pkg} class="dark:bg-stone-900" />
 </div>

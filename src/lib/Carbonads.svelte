@@ -1,6 +1,6 @@
 <script lang="ts">
   import { navigating } from '$app/state';
-  
+
   interface WindowWithCarbonAds extends Window {
     _carbonads?: {
       refresh: () => void;
@@ -11,11 +11,8 @@
     carbonSrc: string;
     class?: string;
   }
-  
-  let { 
-    carbonSrc, 
-    class: className = 'fixed bottom-5 right-5 z-50 hidden sm:block' 
-  }: Props = $props();
+
+  let { carbonSrc, class: className = 'fixed bottom-5 right-5 z-50 hidden sm:block' }: Props = $props();
 
   function refreshCarbonAds() {
     const isCarbonAdsRendered = document.querySelector('#carbonads');
@@ -47,8 +44,8 @@
     if (navigating) {
       refreshCarbonAds();
     } else {
-     // Initial mount
-     refreshCarbonAds();  
+      // Initial mount
+      refreshCarbonAds();
     }
   });
 </script>
