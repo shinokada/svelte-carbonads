@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { removeHyphensAndCapitalize, SupportBanner, TechInfo, H2, HighlightCompo } from 'runes-webkit';
+  import { removeHyphensAndCapitalize, SupportBanner, TechInfo, H2 } from 'runes-webkit';
+  import { HighlightCompo } from 'svelte-rune-highlight';
   import { P } from 'flowbite-svelte';
 
   const modules = import.meta.glob('./md/*.md', {
