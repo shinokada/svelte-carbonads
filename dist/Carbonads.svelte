@@ -1,51 +1,59 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
   import { navigating } from '$app/state';
+
   interface WindowWithCarbonAds extends Window {
-    _carbonads: {
+    _carbonads?: {
       refresh: () => void;
     };
   }
 
   interface Props {
     carbonSrc: string;
-    class: string;
+    class?: string;
   }
+
   let { carbonSrc, class: className = 'fixed bottom-5 right-5 z-50 hidden sm:block' }: Props = $props();
-
-  onMount(() => {
-    refreshCarbonAds();
-  });
-
-  $effect(() => {
-    if (navigating) {
-      refreshCarbonAds();
-    }
-  });
 
   function refreshCarbonAds() {
     const isCarbonAdsRendered = document.querySelector('#carbonads');
-    const windowWithCarbon = window as unknown as WindowWithCarbonAds;
+    const windowWithCarbon = window as WindowWithCarbonAds;
 
     if (isCarbonAdsRendered && windowWithCarbon._carbonads) {
       windowWithCarbon._carbonads.refresh();
     } else {
+      const container = document.querySelector('#carbon-container');
+      if (!container) return;
+
+      // Remove any existing scripts first to avoid duplicates
+      const existingScript = container.querySelector('#_carbonads_js');
+      if (existingScript) {
+        existingScript.remove();
+      }
+
       const script = document.createElement('script');
       script.async = true;
       script.id = '_carbonads_js';
       script.src = carbonSrc;
-
-      const container = document.querySelector('#carbon-container');
-      if (container) {
-        // Remove any existing scripts first to avoid duplicates
-        const existingScript = container.querySelector('#_carbonads_js');
-        if (existingScript) {
-          container.removeChild(existingScript);
-        }
-        container.appendChild(script);
-      }
+      script.onerror = () => {
+        console.error('Failed to load Carbon Ads script');
+      };
+      container.appendChild(script);
     }
   }
+
+  // Initialize and refresh on navigation
+  $effect(() => {
+    // Access navigating to track it as a dependency
+    if (navigating) {
+      refreshCarbonAds();
+    } else {
+      // Initial mount only (when navigating is null/undefined)
+      // Check if this is the first run
+      if (!document.querySelector('#carbonads')) {
+        refreshCarbonAds();
+      }
+    }
+  });
 </script>
 
 <aside class={className}>
@@ -56,6 +64,6 @@
 @component
 [Go to docs](https://svelte-carbonads.codewithshin.com/)
 ## Props
-@prop export let carbonSrc: string = '';
-@prop export let adclass: string = 'fixed bottom-5 right-5 z-50 hidden sm:block';
+@prop carbonSrc: string - The Carbon Ads script source URL
+@prop class?: string - CSS classes for the aside container (default: 'fixed bottom-5 right-5 z-50 hidden sm:block')
 -->

@@ -1,5 +1,11 @@
 # svelte-carbonads
 
+## 2.0.2
+
+### Patch Changes
+
+- fix: Carbonads update
+
 ## 2.0.1
 
 ### Patch Changes
