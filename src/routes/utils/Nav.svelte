@@ -35,7 +35,7 @@
   navContainerClass="lg:justify-between"
 >
   <NavBrand href="/">
-    <span class="text-primary-900 dark:text-primary-500 self-center text-2xl font-semibold whitespace-nowrap xl:text-3xl">Svelte Animated Icons</span>
+    <span class="text-primary-900 dark:text-primary-500 self-center text-2xl font-semibold whitespace-nowrap xl:text-3xl">Svelte Carbonads</span>
   </NavBrand>
   <div class="flex justify-end lg:order-2">
     <NavHamburger class="order-3" />
